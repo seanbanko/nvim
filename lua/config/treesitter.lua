@@ -1,9 +1,9 @@
--- local ok, ts_config = pcall(require, 'nvim-treesitter.configs')
--- if not ok then
---   -- not loaded
--- end
+local present, ts_config = pcall(require, 'nvim-treesitter.configs')
+if not present then
+    return
+end
 
-require('nvim-treesitter.configs').setup {
+ts_config.setup {
   highlight = {
     enable = true, -- false will disable the whole extension
     use_languagetree = true,
