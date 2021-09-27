@@ -1,7 +1,12 @@
+-- local ok, ts_config = pcall(require, 'nvim-treesitter.configs')
+-- if not ok then
+--   -- not loaded
+-- end
+
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true, -- false will disable the whole extension
-    use_languagetree = true, -- TODO figure out what this does
+    use_languagetree = true,
   },
   incremental_selection = {
     enable = true,

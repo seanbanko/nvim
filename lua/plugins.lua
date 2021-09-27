@@ -17,6 +17,7 @@ vim.api.nvim_exec(
 )
 local use = require("packer").use
 require("packer").startup(function()
+
     use { "wbthomason/packer.nvim" } -- Package manager
 
     use {
@@ -74,15 +75,15 @@ require("packer").startup(function()
     --   end,
     -- }
 
-    -- Treesitter
-    use { 
+    use {
         "nvim-treesitter/nvim-treesitter",
-        -- run = ":TSUpdate",
-        -- config = function()
-        --     require("config/treesitter").setup()
-        -- end,
+        run = ":TSUpdate",
+        opt = true,
+        event = "BufRead",
+        requires = "nvim-treesitter/nvim-treesitter-textobjects",
+        config = [[require('config/treesitter')]],
     }
-    use { "nvim-treesitter/nvim-treesitter-textobjects" } -- Additional textobjects for treesitter
+
 end)
 
 -- Plugins to Try

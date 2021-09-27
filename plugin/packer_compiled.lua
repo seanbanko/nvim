@@ -87,12 +87,19 @@ _G.packer_plugins = {
     path = "/home/sean/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/home/sean/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    after = { "nvim-treesitter-textobjects" },
+    config = { "require('config/treesitter')" },
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/sean/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
-    loaded = true,
-    path = "/home/sean/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/sean/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -141,6 +148,13 @@ time([[Defining packer_plugins]], false)
 time([[Config for nord.nvim]], true)
 try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\21colorscheme nord\bcmd\bvim\0", "config", "nord.nvim")
 time([[Config for nord.nvim]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter'}, { event = "BufRead *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
