@@ -18,7 +18,14 @@ vim.api.nvim_exec(
 local use = require("packer").use
 require("packer").startup(function()
     use { "wbthomason/packer.nvim" } -- Package manager
-    use { "shaunsingh/nord.nvim" } -- Theme
+
+    use {
+          "shaunsingh/nord.nvim",
+          config = function()
+             vim.cmd [[colorscheme nord]]
+          end,
+   }
+
     use { "tpope/vim-commentary" } -- "gc" to comment visual regions/lines
     use { "tpope/vim-surround" } -- Surround textobjects
     use { "ThePrimeagen/vim-be-good" }

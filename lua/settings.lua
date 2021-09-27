@@ -78,5 +78,3 @@ vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 -- Close certain windows with q [@folke]
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
 vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
-
-vim.cmd("colorscheme nord")
