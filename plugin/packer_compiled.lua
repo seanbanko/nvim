@@ -83,8 +83,10 @@ _G.packer_plugins = {
     path = "/home/sean/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/home/sean/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    config = { "require('config/lspconfig')" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/sean/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     after = { "nvim-treesitter-textobjects" },
@@ -152,6 +154,7 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'nvim-lspconfig'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")

@@ -51,9 +51,9 @@ require("packer").startup(function()
     -- Collection of configurations for built-in LSP client
     use { 
         "neovim/nvim-lspconfig",
-        -- config = function()
-        --     require("config/lsp")
-        -- end,
+        opt = true,
+        event = "BufReadPre",
+        config = [[require('config/lspconfig')]],
     }
 
     -- Autocompletion plugin
