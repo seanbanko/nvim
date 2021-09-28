@@ -20,7 +20,6 @@ vim.opt.mouse = "a" -- Enable the mouse in all modes
 vim.opt.number = true
 vim.opt.pumblend = 15 -- Popup menu blending (transparency)
 vim.opt.relativenumber = true -- Show hybrid relative line numbers
-vim.opt.ruler = true -- Show ruler (if no statusline is set)
 vim.opt.scrolloff = 4 -- Always display at least <scrolloff> lines above/below the cursor
 vim.opt.sidescrolloff = 4 -- Always display this many columns on the side of the cursor
 vim.opt.shiftwidth = indent -- Number of characters used for auto-indenting
@@ -37,7 +36,7 @@ vim.opt.termguicolors = true -- True color support
 vim.opt.timeoutlen = 500
 vim.opt.updatetime = 500
 vim.opt.wildignore = vim.opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
-vim.opt.wildmode = vim.opt.wildmode + { "full", "list", "longest" }
+vim.opt.wildmode = { "list", "full" }
 vim.opt.wrap = true
 
 -- Sensible autoformatting options [@tjdevries]

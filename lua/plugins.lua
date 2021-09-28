@@ -34,12 +34,11 @@ require("packer").startup(function()
     use { "folke/which-key.nvim" }
     use { "folke/zen-mode.nvim" }
 
-    use {
+    use({
         "hoob3rt/lualine.nvim",
-        -- config = function()
-        --     require("config/lualine").setup()
-        -- end,
-    } 
+        event = "VimEnter",
+        config = [[require('config/lualine').setup()]],
+    })
 
     -- Telescope
     use { "nvim-lua/plenary.nvim" } -- Dependency 
