@@ -37,7 +37,7 @@ require("packer").startup(function()
     use({
         "hoob3rt/lualine.nvim",
         event = "VimEnter",
-        config = [[require('config/lualine').setup()]],
+        config = [[require('config/lualine')]],
     })
 
     -- Telescope
@@ -55,24 +55,21 @@ require("packer").startup(function()
         config = [[require('config/lspconfig')]],
     }
 
-    -- Autocompletion plugin
-    use { "hrsh7th/nvim-cmp" } 
+    -- Autocompletion 
+    use {
+        "hrsh7th/nvim-cmp",
+        config = function()
+            require("config/cmp")
+        end,
+    }
 
-    -- Autocompletion
-    -- use{  "hrsh7th/cmp-nvim-lsp" }
+    use {
+        "hrsh7th/cmp-nvim-lsp",
+    }
 
-    -- use {
-    --   "glepnir/lspsaga.nvim",
-    --   config = function()
-    --     require("config.lspsaga").setup()
-    --   end,
-    -- }
-    -- use {
-    --   "onsails/lspkind-nvim",
-    --   config = function()
-    --     require("lspkind").init()
-    --   end,
-    -- }
+    use {
+        "hrsh7th/cmp-buffer",
+    }
 
     use {
         "nvim-treesitter/nvim-treesitter",
