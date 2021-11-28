@@ -32,25 +32,33 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 
+-- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- The following example advertise capabilities to `clangd`.
-require'lspconfig'.clangd.setup {
-  capabilities = capabilities,
-}
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'clangd', 'pyright', }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
+    capabilities = capabilities,
   }
 end
+
+-- local format_config = {
+--     local clang_format = { formatCommand = 'clang-format -style=LLVM ${INPUT}', formatStdin = true }
+--     local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true }
+--     local stylua = { formatCommand = 'stylua -s -', formatStdin = true }
+--     local black = { formatCommand = 'black --quiet -', formatStdin = true }
+--     return {
+--       c = { clang_format },
+--       cpp = { clang_format },
+--       lua = { stylua },
+--       python = { black },
+--     }
+-- }
