@@ -27,7 +27,11 @@ require("packer").startup({function()
     use { "folke/which-key.nvim" }
 
     -- Treesitter
-    use { "nvim-treesitter/nvim-treesitter" }
+    use { "nvim-treesitter/nvim-treesitter",
+        config = function() 
+            require("config/treesitter") 
+        end, 
+    }
     use { "nvim-treesitter/nvim-treesitter-textobjects" }
 
     -- Telescope
@@ -53,12 +57,12 @@ require("packer").startup({function()
 
     -- Lualine
 
-    -- use { "nvim-lualine/lualine.nvim",
-    --   requires = { "kyazdani42/nvim-web-devicons", opt = true }
-    --   config = function()
-    --       require("config/lualine")
-    --   end,
-    -- }
+    use { "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      config = function()
+          require("config/lualine")
+      end,
+    }
 
     -- Zen Mode
     use {

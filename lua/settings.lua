@@ -1,7 +1,6 @@
 -- General
 vim.opt.confirm = true
 vim.opt.clipboard = "unnamedplus" 
-vim.opt.guifont = "Liga SFMono Nerd Font:h12"
 vim.opt.hidden = true
 vim.opt.inccommand = "nosplit"
 vim.opt.joinspaces = false
@@ -43,7 +42,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tar = 1
 vim.g.loaded_tarPlugin = 1
 vim.g.loaded_zipPlugin = 1
-
 
 -- Don't overwrite my format options
 vim.cmd([[au BufWinEnter * setlocal formatoptions-=cro]])
