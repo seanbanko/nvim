@@ -18,6 +18,7 @@ vim.cmd([[autocmd FileType c,lua setlocal shiftwidth=2 tabstop=2 softtabstop=2]]
 
 -- Search
 vim.opt.ignorecase = true
+vim.opt.incsearch = false
 vim.opt.smartcase = true
 vim.opt.wildmode = { "longest", "full" }
 
@@ -26,7 +27,7 @@ vim.opt.linebreak = true
 vim.opt.number = true
 vim.opt.pumblend = 15
 vim.opt.relativenumber = true 
-vim.opt.scrolloff = 8 
+vim.opt.scrolloff = 4 
 vim.opt.sidescrolloff = 4 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
