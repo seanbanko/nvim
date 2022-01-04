@@ -5,9 +5,9 @@ end
 
 zm_config.setup {
   window = {
-      backdrop = 1, 
-      width = 80, 
-      height = 1, 
+      backdrop = 1,
+      width = 80,
+      height = 1,
   },
   plugins = {
       twilight = { enabled = false },
