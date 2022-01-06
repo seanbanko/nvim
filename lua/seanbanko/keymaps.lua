@@ -42,11 +42,10 @@ map("v", "p", '"_dP')
  
  -- Telescope
 map("n", "<leader>f", "<cmd>Telescope find_files<CR>")
-map("n", "<leader>b", "<cmd>Telescope file_browser<CR>")
-map("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>")
 map("n", "<leader>cs", "<cmd>Telescope colorscheme<CR>")
 
+-- Format (calls null-ls)
 map("n", "<leader>x", "<cmd>Format<CR>")
 
 -- ZenMode
@@ -58,5 +57,4 @@ map("n", "<leader>pc", "<cmd>PackerCompile<CR>")
 
 -- Floatterm
 map("n", "<leader>t", "<cmd>FloatermNew<CR>")
-
 
