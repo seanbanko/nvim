@@ -27,7 +27,7 @@ map("i", ".", ".<C-g>u")
 map("i", ";", ";<C-g>u")
 
 -- (g)oto (w)ord
-map("n", "gw", "*N") 
+map("n", "gw", "*N")
 map("x", "gw", "*N")
 
 map("n", "<C-f>", "/") -- Ctrl-F initiates search
