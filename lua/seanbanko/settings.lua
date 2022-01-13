@@ -7,7 +7,6 @@ vim.opt.joinspaces = false
 vim.opt.mouse = "a"
 vim.opt.shortmess = "IToOlxfitn" -- TODO actually think about this
 vim.opt.termguicolors = true
-vim.opt.timeoutlen = 100
 
 -- Tabs and Spacing
 local indent = 4
