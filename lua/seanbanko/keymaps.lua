@@ -9,6 +9,7 @@ end
 
 map("", "<space>", "<nop>")
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 map("n", "q:", "<nop>")
 
@@ -39,10 +40,10 @@ map("v", ">", ">gv")
 
 -- Persistent paste
 map("v", "p", '"_dP')
- 
+
  -- Telescope
 map("n", "<leader>f", "<cmd>Telescope find_files<CR>")
-map("n", "<leader>g", "<cmd>Telescope live_grep<CR>")
+map("n", "<leader>s", "<cmd>Telescope live_grep<CR>")
 map("n", "<leader>cs", "<cmd>Telescope colorscheme<CR>")
 
 -- Format (calls null-ls)
