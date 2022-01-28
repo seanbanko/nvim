@@ -83,6 +83,7 @@ return packer.startup(function(use)
 	use({ "folke/which-key.nvim" })
 	use({ "folke/zen-mode.nvim" })
 	use({ "lervag/vimtex" })
+	use({ "ellisonleao/glow.nvim" })
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
