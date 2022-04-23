@@ -59,3 +59,13 @@ map("n", "<leader>pc", "<cmd>PackerCompile<CR>")
 -- Floatterm
 map("n", "<leader>t", "<cmd>FloatermNew<CR>")
 
+-- PlatformIO
+map("n", "<leader>pr", "<cmd>!pio run --target upload<CR>")
+map("n", "<leader>pd", "<cmd>!pio device monitor<CR>")
+
+map("n", "k", "gk")
+map("n", "j", "gj")
+
+map("n", "<leader>rp", "<cmd>lua require('rose-pine').toggle()<CR>")
+
+

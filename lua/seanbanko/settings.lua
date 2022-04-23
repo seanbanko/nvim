@@ -1,18 +1,18 @@
 -- General
 vim.opt.confirm = true
-vim.opt.clipboard = "unnamedplus" 
+vim.opt.clipboard = "unnamedplus"
 vim.opt.hidden = true
 vim.opt.inccommand = "nosplit"
 vim.opt.joinspaces = false
-vim.opt.mouse = "a"
+vim.opt.ruler = false
 vim.opt.shortmess = "IToOlxfitn" -- TODO actually think about this
 vim.opt.termguicolors = true
 
 -- Tabs and Spacing
 local indent = 4
 vim.opt.expandtab = true
-vim.opt.shiftwidth = indent 
-vim.opt.softtabstop = indent 
+vim.opt.shiftwidth = indent
+vim.opt.softtabstop = indent
 vim.opt.tabstop = indent
 vim.cmd([[autocmd FileType c,lua setlocal shiftwidth=2 tabstop=2 softtabstop=2]])
 
@@ -26,9 +26,9 @@ vim.opt.wildmode = { "longest", "full" }
 vim.opt.linebreak = true
 vim.opt.number = true
 vim.opt.pumblend = 15
-vim.opt.relativenumber = true 
-vim.opt.scrolloff = 4 
-vim.opt.sidescrolloff = 4 
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 4
+vim.opt.sidescrolloff = 4
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.wrap = true
