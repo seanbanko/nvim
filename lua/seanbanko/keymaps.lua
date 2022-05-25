@@ -68,4 +68,6 @@ map("n", "j", "gj")
 
 map("n", "<leader>rp", "<cmd>lua require('rose-pine').toggle()<CR>")
 
+map("n", "ZZ", "<cmd>xa<CR>")
 
+map("n", "<leader>wc", "<cmd>w !wc<CR>")
