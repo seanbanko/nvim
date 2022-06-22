@@ -18,7 +18,7 @@ vim.cmd([[autocmd FileType c,lua setlocal shiftwidth=2 tabstop=2 softtabstop=2]]
 
 -- Search
 vim.opt.ignorecase = true
-vim.opt.incsearch = false
+vim.opt.incsearch = true
 vim.opt.smartcase = true
 vim.opt.wildmode = { "longest", "full" }
 
