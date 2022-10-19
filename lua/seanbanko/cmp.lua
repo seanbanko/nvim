@@ -13,23 +13,22 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
 	Text = "",
-	Method = "m",
-	Function = "",
-	Constructor = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
 	Field = "",
-	Variable = "",
+	Variable = "",
 	Class = "",
 	Interface = "",
-	Module = "",
+	Module = "",
 	Property = "",
 	Unit = "",
 	Value = "",
 	Enum = "",
-	Keyword = "",
-	Snippet = "",
+	Keyword = "",
+	Snippet = "",
 	Color = "",
 	File = "",
 	Reference = "",
@@ -41,7 +40,6 @@ local kind_icons = {
 	Operator = "",
 	TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup({
 	snippet = {
@@ -95,19 +93,21 @@ cmp.setup({
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
-			-- Kind icons
-			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+			vim_item.kind = kind_icons[vim_item.kind]
 			vim_item.menu = ({
-				luasnip = "[Snippet]",
-				buffer = "[Buffer]",
-				path = "[Path]",
+				nvim_lsp = "lsp",
+				nvim_lua = "lua",
+				luasnip = "",
+				buffer = "buff",
+				path = "path",
+				emoji = "",
 			})[entry.source.name]
 			return vim_item
 		end,
 	},
 	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
@@ -117,12 +117,10 @@ cmp.setup({
 		select = false,
 	},
 	window = {
-		documentation = {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		},
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 	experimental = {
 		ghost_text = true,
-		native_menu = false,
 	},
 })

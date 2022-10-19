@@ -3,6 +3,6 @@ if not status_ok then
   return
 end
 
-require("seanbanko.lsp.lsp-installer")
+require("seanbanko.lsp.mason")
 require("seanbanko.lsp.handlers").setup()
 require("seanbanko.lsp.null-ls")
