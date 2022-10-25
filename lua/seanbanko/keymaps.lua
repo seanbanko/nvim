@@ -27,4 +27,4 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts) -- Tele
 vim.keymap.set("n", "<leader>lg", "<cmd>Telescope live_grep<CR>", opts) -- Telescope
 vim.keymap.set("n", "<leader>cs", "<cmd>Telescope colorscheme<CR>", opts) -- Telescope
 vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", opts) -- ZenMode
-vim.keymap.set("n", "<leader>x", "<cmd>Format<CR>", opts) -- Format with null-ls
+vim.keymap.set("n", "?", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- Diagnostics

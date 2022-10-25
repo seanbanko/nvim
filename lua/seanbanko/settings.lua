@@ -5,8 +5,10 @@ vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.inccommand = "nosplit"
 vim.opt.incsearch = true
+vim.opt.iskeyword:append("-") -- treats words with `-` as single words
 vim.opt.joinspaces = false
 vim.opt.linebreak = true
+vim.opt.mouse = ""
 vim.opt.number = true
 vim.opt.pumblend = 15 -- (p)op(u)p(m)enu(blend)
 vim.opt.relativenumber = true
@@ -17,11 +19,10 @@ vim.opt.sidescrolloff = 4
 vim.opt.smartcase = true
 vim.opt.softtabstop = 4
 vim.opt.splitbelow = true
+vim.opt.splitbelow = true -- force all horizontal splits to go below current window
 vim.opt.splitright = true
+vim.opt.splitright = true -- force all vertical splits to go to the right of current window
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.wildmode = { "longest", "full" }
 vim.opt.wrap = true
-vim.opt.splitbelow = true -- force all horizontal splits to go below current window
-vim.opt.splitright = true -- force all vertical splits to go to the right of current window
-vim.opt.iskeyword:append("-") -- treats words with `-` as single words
