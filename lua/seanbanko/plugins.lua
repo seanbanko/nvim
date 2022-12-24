@@ -47,6 +47,7 @@ return packer.startup(function(use)
 	use({ "projekt0n/github-nvim-theme" })
 	use({ "shaunsingh/nord.nvim" })
 	use({ "rose-pine/neovim" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	-- Autocompletion and Snippets
 	use({ "L3MON4D3/LuaSnip" })
 	use({ "hrsh7th/cmp-buffer" })
@@ -58,10 +59,10 @@ return packer.startup(function(use)
 	use({ "saadparwaiz1/cmp_luasnip" })
 	-- LSP
 	use({ "neovim/nvim-lspconfig" })
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
+	use({ "williamboman/mason.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "jose-elias-alvarez/null-ls.nvim" })
-    use({ "RRethy/vim-illuminate" })
+	use({ "RRethy/vim-illuminate" })
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
 	-- Treesitter
@@ -69,11 +70,11 @@ return packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
 	-- Git
 	use({ "lewis6991/gitsigns.nvim" })
-    -- DAP (Debugging)
-    use({ "mfussenegger/nvim-dap" })
-    use({ "rcarriga/nvim-dap-ui" })
-    use({ "ravenxrz/DAPInstall.nvim" })
-    -- Misc
+	-- DAP (Debugging)
+	use({ "mfussenegger/nvim-dap" })
+	use({ "rcarriga/nvim-dap-ui" })
+	use({ "ravenxrz/DAPInstall.nvim" })
+	-- Misc
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
