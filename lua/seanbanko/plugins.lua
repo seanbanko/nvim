@@ -89,6 +89,13 @@ return packer.startup(function(use)
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "nvim-lualine/lualine.nvim" })
 	use({ "tpope/vim-surround" })
+	use({
+		"akinsho/flutter-tools.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("flutter-tools").setup({})
+		end,
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
