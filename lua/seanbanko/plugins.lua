@@ -1,104 +1,154 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing Packer. Close and relaunch Neovim.")
-	vim.cmd([[packadd packer.nvim]])
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
-
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
+require("lazy").setup({
+  -- Colorschemes
+  { "catppuccin/nvim", name = "catppuccin" },
+  "folke/tokyonight.nvim",
+  "projekt0n/github-nvim-theme",
+  "rose-pine/neovim",
+  "shaunsingh/nord.nvim",
+  -- Autocompletion and Snippets
+  "L3MON4D3/LuaSnip",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-path",
+  "hrsh7th/nvim-cmp",
+  "rafamadriz/friendly-snippets",
+  "saadparwaiz1/cmp_luasnip",
+  -- LSP
+  "neovim/nvim-lspconfig",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "jose-elias-alvarez/null-ls.nvim",
+  "RRethy/vim-illuminate",
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    keys = {
+      {
+        "<leader>ff",
+        "<cmd>Telescope find_files<cr>",
+        mode = "n",
+        silent = true,
+      },
+      {
+        "<leader>lg",
+        "<cmd>Telescope live_grep<cr>",
+        mode = "n",
+        silent = true,
+      },
+      {
+        "<leader>di",
+        "<cmd>Telescope diagnostics<cr>",
+        mode = "n",
+        silent = true,
+      },
+      {
+        "<leader>cs",
+        "<cmd>Telescope colorscheme<cr>",
+        mode = "n",
+        silent = true,
+      },
+      {
+        "<leader>/",
+        "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending<cr>",
+        mode = "n",
+        silent = true,
+      },
+    },
+  },
+  -- Treesitter
+  "nvim-treesitter/nvim-treesitter",
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  -- Git
+  "lewis6991/gitsigns.nvim",
+  -- DAP (Debugging)
+  "mfussenegger/nvim-dap",
+  "rcarriga/nvim-dap-ui",
+  "ravenxrz/DAPInstall.nvim",
+  -- Misc
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  },
+  "ellisonleao/glow.nvim",
+  "folke/twilight.nvim",
+  "folke/which-key.nvim",
+  {
+    "folke/zen-mode.nvim",
+    keys = {
+      { "<leader>z", "<cmd>ZenMode<cr>", mode = "n", silent = true },
+    },
+  },
+  "lervag/vimtex",
+  "lukas-reineke/indent-blankline.nvim",
+  "nvim-lualine/lualine.nvim",
+  "tpope/vim-surround",
+  {
+    "akinsho/flutter-tools.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+  },
+  {
+    "gaoDean/autolist.nvim",
+    ft = {
+      "markdown",
+      "text",
+      "tex",
+      "plaintex",
+    },
+    config = function()
+      local autolist = require("autolist")
+      autolist.setup()
+      autolist.create_mapping_hook("i", "<CR>", autolist.new)
+      autolist.create_mapping_hook("i", "<Tab>", autolist.indent)
+      autolist.create_mapping_hook("i", "<S-Tab>", autolist.indent, "<C-D>")
+      autolist.create_mapping_hook("n", "o", autolist.new)
+      autolist.create_mapping_hook("n", "O", autolist.new_before)
+      autolist.create_mapping_hook("n", ">>", autolist.indent)
+      autolist.create_mapping_hook("n", "<<", autolist.indent)
+      autolist.create_mapping_hook("n", "<C-r>", autolist.force_recalculate)
+      autolist.create_mapping_hook("n", "<leader>x", autolist.invert_entry, "")
+      vim.api.nvim_create_autocmd("TextChanged", {
+        pattern = "*",
+        callback = function()
+          vim.cmd.normal({ autolist.force_recalculate(nil, nil), bang = false })
+        end,
+      })
+    end,
+  },
+  {
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+      },
+    },
+  },
 })
-
--- Install your plugins here
-return packer.startup(function(use)
-	-- Packer
-	use({ "wbthomason/packer.nvim" })
-	use({ "nvim-lua/plenary.nvim" })
-	-- Colorschemes
-	use({ "projekt0n/github-nvim-theme" })
-	use({ "shaunsingh/nord.nvim" })
-	use({ "rose-pine/neovim" })
-	use({ "catppuccin/nvim", as = "catppuccin" })
-	-- Autocompletion and Snippets
-	use({ "L3MON4D3/LuaSnip" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-cmdline" })
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/cmp-path" })
-	use({ "hrsh7th/nvim-cmp" })
-	use({ "rafamadriz/friendly-snippets" })
-	use({ "saadparwaiz1/cmp_luasnip" })
-	-- LSP
-	use({ "neovim/nvim-lspconfig" })
-	use({ "williamboman/mason.nvim" })
-	use({ "williamboman/mason-lspconfig.nvim" })
-	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "RRethy/vim-illuminate" })
-	-- Telescope
-	use({ "nvim-telescope/telescope.nvim" })
-	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
-	-- Git
-	use({ "lewis6991/gitsigns.nvim" })
-	-- DAP (Debugging)
-	use({ "mfussenegger/nvim-dap" })
-	use({ "rcarriga/nvim-dap-ui" })
-	use({ "ravenxrz/DAPInstall.nvim" })
-	-- Misc
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
-	use({ "ellisonleao/glow.nvim" })
-	use({ "folke/twilight.nvim" })
-	use({ "folke/which-key.nvim" })
-	use({ "folke/zen-mode.nvim" })
-	use({ "lervag/vimtex" })
-	use({ "lukas-reineke/indent-blankline.nvim" })
-	use({ "nvim-lualine/lualine.nvim" })
-	use({ "tpope/vim-surround" })
-	use({
-		"akinsho/flutter-tools.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("flutter-tools").setup({})
-		end,
-	})
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
