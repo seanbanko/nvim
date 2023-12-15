@@ -1,7 +1,0 @@
-require("seanbanko.options")
-require("seanbanko.keymaps")
-require("seanbanko.plugins")
-require("seanbanko.autocommands")
-require("seanbanko.colorscheme")
--- require("seanbanko.cmp")
-require("seanbanko.lsp")

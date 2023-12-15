@@ -1,8 +1,5 @@
 local opts = { silent = true } -- don't display the command called when a keymap is triggered
 
-vim.keymap.set("", "<space>", "<nop>", opts)
-vim.g.mapleader = " "
-
 -- undo breakpoints
 vim.keymap.set("i", ",", ",<c-g>u", opts)
 vim.keymap.set("i", ".", ".<c-g>u", opts)
