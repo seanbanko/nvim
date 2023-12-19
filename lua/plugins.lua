@@ -13,11 +13,15 @@ return {
       }
     },
   },
-  "williamboman/mason-lspconfig.nvim",
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "simrat39/rust-tools.nvim",
+    },
+  },
   { 'j-hui/fidget.nvim', opts = {} },
   { "folke/neodev.nvim", opts = {} },
   "folke/neoconf.nvim",
-  -- LSP Misc
   "mfussenegger/nvim-ansible",
   "lervag/vimtex",
   {

@@ -1,5 +1,11 @@
 return {
-  { "catppuccin/nvim", name = "catppuccin" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      vim.cmd.colorscheme("catppuccin-macchiato")
+    end
+  },
   {
     "sainnhe/everforest",
     config = function()
