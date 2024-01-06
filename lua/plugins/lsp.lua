@@ -57,6 +57,7 @@ local servers = {
   ansiblels = {},
   bashls = {},
   bufls = {},
+  -- exlcude proto
   clangd = {},
   cssls = {},
   gopls = {},
@@ -96,13 +97,17 @@ require("mason-lspconfig").setup({
       })
     end,
     ["lua_ls"] = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup {
+      require("lspconfig").lua_ls.setup {
         settings = {
           Lua = {
             diagnostics = { globals = { "vim" } }
           }
         }
+      }
+    end,
+    ["clangd"] = function()
+      require("lspconfig").clangd.setup {
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
       }
     end,
   }

@@ -27,11 +27,18 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<c-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<c-f>"] = cmp.mapping.scroll_docs(4),
-          ["<c-space>"] = cmp.mapping.complete(),
-          ["<c-e>"] = cmp.mapping.abort(),
-          ["<cr>"] = cmp.mapping.confirm({ select = true }),
+          ["<cr>"] = cmp.mapping({
+            i = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              else
+                fallback()
+              end
+            end,
+            s = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+          }),
+          -- SuperTab
           ["<tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               local entry = cmp.get_selected_entry()
@@ -44,12 +51,12 @@ return {
               fallback()
             end
           end, { "i", "s", "c", }),
-
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
+          { name = "cmdline" }
         }, {
           { name = "buffer" },
         }),
@@ -77,6 +84,14 @@ return {
         source.group_index = source.group_index or 1
       end
       require("cmp").setup(opts)
+      require('cmp').setup.cmdline(':', {
+        mapping = require("cmp").mapping.preset.cmdline(),
+        sources = require("cmp").config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
     end,
   },
 }

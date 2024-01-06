@@ -12,8 +12,10 @@ return {
       vim.cmd [[ let g:everforest_background='soft' ]]
     end
   },
-  "folke/tokyonight.nvim",
   "projekt0n/github-nvim-theme",
   "rose-pine/neovim",
   "shaunsingh/nord.nvim",
+  "navarasu/onedark.nvim",
+  'Mofiqul/vscode.nvim',
+  "folke/tokyonight.nvim",
 }

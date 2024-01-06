@@ -8,8 +8,12 @@ return {
   },
   opts = {
     close_if_last_window = true,
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = true,
+    },
   },
   keys = {
-    { "<leader>nt", "<cmd>Neotree toggle<cr>", mode = "n", silent = true },
+    { "<leader>nt", "<cmd>Neotree toggle reveal=true <cr>", mode = "n", silent = true },
   }
 }
