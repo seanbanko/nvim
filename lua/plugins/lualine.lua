@@ -18,6 +18,13 @@ return {
     local spaces = function()
       return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
     end
+    local lint_progress = function()
+      local linters = require("lint").get_running()
+      if #linters == 0 then
+        return "󰦕"
+      end
+      return "󱉶 " .. table.concat(linters, ", ")
+    end
     require("lualine").setup({
       options = {
         component_separators = '|',
@@ -27,7 +34,7 @@ return {
         lualine_a = { { "mode" }, },
         lualine_b = { { "filename", path = 3 }, "branch" },
         lualine_c = { diagnostics },
-        lualine_x = {},
+        lualine_x = { lint_progress },
         lualine_y = { filetype, spaces, },
         lualine_z = { { "location" } },
       },
