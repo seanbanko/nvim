@@ -5,7 +5,7 @@ return {
     lint.linters_by_ft = {
       go = { "golangcilint" },
     }
-    vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "TextChanged" }, {
+    vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
       callback = function()
         require("lint").try_lint()
       end,

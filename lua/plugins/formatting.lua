@@ -6,6 +6,7 @@ return {
       go = { "goimports", "gofumpt" },
       json = { "prettier" },
       markdown = { "prettier" },
+      rust = { "rustfmt" },
     },
     format_on_save = {
       lsp_fallback = true,

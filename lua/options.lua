@@ -2,6 +2,7 @@ local opt = vim.opt
 
 opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 1
 opt.confirm = true
 opt.expandtab = true
 opt.hidden = true

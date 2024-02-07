@@ -1,6 +1,12 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = "nvim-lua/plenary.nvim",
+  opts = {
+    pickers = {
+      find_files = { theme = "dropdown", },
+      live_grep = { theme = "dropdown", },
+    },
+  },
   keys = {
     { "<leader>fo", function() require("telescope.builtin").find_files() end,  mode = "n", silent = true, },
     { "<leader>lg", function() require("telescope.builtin").live_grep() end,   mode = "n", silent = true, },
