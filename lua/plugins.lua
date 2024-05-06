@@ -43,6 +43,11 @@ return {
     keys = { { "<leader>so", "<cmd>SymbolsOutline<cr>", mode = "n", silent = true } },
   },
   {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+  },
+  {
     "https://codeberg.org/esensar/nvim-dev-container",
     dependencies = "nvim-treesitter/nvim-treesitter",
     opts = {
