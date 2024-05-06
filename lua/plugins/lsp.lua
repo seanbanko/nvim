@@ -38,6 +38,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set("n", "?", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     vim.keymap.set("n", "<leader>]d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
     vim.keymap.set("n", "<leader>[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+    vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", opts)
   end
 })
 
