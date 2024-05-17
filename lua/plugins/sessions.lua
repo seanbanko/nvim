@@ -12,6 +12,7 @@ return {
     require('auto-session').setup {
       pre_save_cmds = { "Neotree close" },
       post_restore_cmds = { "Neotree action=show source=filesystem reveal=true" },
+      auto_session_suppress_dirs = { "~" },
     }
   end
 }
