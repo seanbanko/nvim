@@ -21,9 +21,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- Use size 2 indents for C and Lua
+-- Use size 2 indents for certain filetypes
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "c", "lua", "dart" },
+  pattern = { "c", "lua", "dart", "terraform" },
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2
