@@ -67,4 +67,15 @@ return {
       require('render-markdown').setup({})
     end,
   },
+  {
+    'https://github.com/tpope/vim-fugitive',
+    dependencies = {
+      'https://github.com/tpope/vim-rhubarb',
+      'https://github.com/shumphrey/fugitive-gitlab.vim',
+    },
+    keys = {
+      { "<leader>go", "<cmd>GBrowse<cr>", mode = { "n" }, silent = true },
+      { "<leader>go", ":GBrowse<cr>",     mode = { "v" }, silent = true },
+    },
+  },
 }
