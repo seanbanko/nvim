@@ -4,7 +4,12 @@ return {
   opts = {
     pickers = {
       find_files = { theme = "dropdown", },
-      live_grep = { theme = "dropdown", },
+      live_grep = {
+        theme = "dropdown",
+        layout_config = {
+          width = 0.75
+        }
+      },
     },
   },
   keys = {
