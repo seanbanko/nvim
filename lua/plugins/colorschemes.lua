@@ -1,11 +1,5 @@
 return {
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    config = function()
-      vim.cmd.colorscheme("catppuccin-macchiato")
-    end
-  },
+  "catppuccin/nvim",
   {
     "sainnhe/everforest",
     config = function()
@@ -17,5 +11,10 @@ return {
   "shaunsingh/nord.nvim",
   "navarasu/onedark.nvim",
   'Mofiqul/vscode.nvim',
-  "folke/tokyonight.nvim",
+  {
+    "folke/tokyonight.nvim",
+    config = function()
+      vim.cmd.colorscheme("tokyonight-moon")
+    end
+  }
 }
