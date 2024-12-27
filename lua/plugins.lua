@@ -78,4 +78,5 @@ return {
       { "<leader>go", ":GBrowse<cr>",     mode = { "v" }, silent = true },
     },
   },
+  "https://github.com/towolf/vim-helm",
 }

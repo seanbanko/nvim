@@ -57,8 +57,7 @@ require('mason').setup()
 local servers = {
   ansiblels = {},
   bashls = {},
-  bufls = {},
-  -- exlcude proto
+  buf_ls = {},
   clangd = {},
   cssls = {},
   gopls = {},
@@ -70,7 +69,7 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   texlab = {},
-  tsserver = {},
+  ts_ls = {},
   yamlls = {},
 }
 
@@ -80,6 +79,7 @@ local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("mason-lspconfig").setup({
   ensure_installed = vim.tbl_keys(servers),
+  automatic_installation = false,
   handlers = {
     function(server_name)
       require("lspconfig")[server_name].setup {

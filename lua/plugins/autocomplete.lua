@@ -1,4 +1,11 @@
 return {
+  -- {
+  --   'saghen/blink.cmp',
+  --   dependencies = 'rafamadriz/friendly-snippets',
+  --   opts = {
+  --     keymap = { preset = 'super-tab' },
+  --   },
+  -- },
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
