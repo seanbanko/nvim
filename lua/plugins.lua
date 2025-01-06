@@ -1,6 +1,8 @@
 return {
-  -- LSP
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { 'saghen/blink.cmp' },
+  },
   {
     "williamboman/mason.nvim",
     opts = {

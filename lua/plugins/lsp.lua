@@ -1,3 +1,5 @@
+-- todo refactor this when neovim v0.11 is released
+
 local signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },
@@ -73,9 +75,7 @@ local servers = {
   yamlls = {},
 }
 
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
-local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local default_capabilities = require('blink.cmp').get_lsp_capabilities()
 
 require("mason-lspconfig").setup({
   ensure_installed = vim.tbl_keys(servers),
