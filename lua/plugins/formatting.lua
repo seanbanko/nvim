@@ -7,6 +7,7 @@ return {
       json = { "prettier" },
       markdown = { "prettier" },
       rust = { "rustfmt" },
+      yaml = { "prettier" },
     },
     format_on_save = {
       lsp_fallback = true,
