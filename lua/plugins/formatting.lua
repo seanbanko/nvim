@@ -7,7 +7,7 @@ return {
       json = { "prettier" },
       markdown = { "prettier" },
       rust = { "rustfmt" },
-      yaml = { "prettier" },
+      terraform = { "terraform_fmt" },
     },
     format_on_save = {
       lsp_fallback = true,

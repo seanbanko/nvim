@@ -7,8 +7,9 @@ local languages = {
   "lua",
   "markdown",
   "markdown_inline",
-  "toml",
   "python",
+  "terraform",
+  "toml",
   "rust",
   "yaml",
 }

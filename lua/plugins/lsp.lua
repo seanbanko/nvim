@@ -70,6 +70,7 @@ local servers = {
   marksman = {},
   pyright = {},
   rust_analyzer = {},
+  terraformls = {},
   texlab = {},
   ts_ls = {},
   yamlls = {},

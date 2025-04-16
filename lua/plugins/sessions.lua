@@ -5,14 +5,13 @@ return {
     { "<leader>ls", function() require("auto-session.session-lens").search_session() end, mode = "n", silent = true },
   },
   dependencies = {
-    "nvim-neo-tree/neo-tree.nvim",
+    "folke/snacks.nvim",
   },
   config = function()
-    vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+    vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
     require('auto-session').setup {
-      pre_save_cmds = { "Neotree close" },
-      post_restore_cmds = { "Neotree action=show source=filesystem reveal=true" },
-      auto_session_suppress_dirs = { "~" },
+      post_restore_cmds = { "lua Snacks.explorer()" },
+      suppressed_dirs = { "~" },
     }
   end
 }
