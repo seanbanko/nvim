@@ -30,7 +30,7 @@ return {
     "numToStr/Comment.nvim",
     config = true,
   },
-  "RRethy/vim-illuminate",
+  -- "RRethy/vim-illuminate",
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
