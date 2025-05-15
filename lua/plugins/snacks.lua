@@ -1,10 +1,14 @@
 return {
   "folke/snacks.nvim",
+  depdencies = { "nvim-tree/nvim-web-devicons" },
   lazy = false,
   opts = {
     explorer = { enabled = true },
     gitbrowse = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      hidden = true,
+    },
     terminal = { enabled = true },
   },
   keys = {

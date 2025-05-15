@@ -70,4 +70,5 @@ return {
     end,
   },
   "https://github.com/towolf/vim-helm",
+  { "nvim-tree/nvim-web-devicons", opts = {} },
 }
