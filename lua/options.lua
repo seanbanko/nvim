@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 opt.clipboard = "unnamedplus"
+opt.colorcolumn = "120"
 opt.completeopt = "menu,menuone,noselect"
 opt.confirm = true
 opt.expandtab = true
@@ -8,7 +9,7 @@ opt.hidden = true
 opt.ignorecase = true
 opt.inccommand = "nosplit"
 opt.incsearch = true
-opt.iskeyword:append("-") -- treats words with `-` as single words
+opt.iskeyword:append("-")
 opt.joinspaces = false
 opt.linebreak = true
 opt.mouse = ""
