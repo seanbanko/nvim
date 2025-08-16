@@ -1,5 +1,10 @@
 return {
-  "catppuccin/nvim",
+  {
+    "catppuccin/nvim",
+    config = function()
+      vim.cmd.colorscheme("catppuccin-mocha")
+    end
+  },
   {
     "sainnhe/everforest",
     config = function()
@@ -7,12 +12,7 @@ return {
     end
   },
   "projekt0n/github-nvim-theme",
-  {
-    "rose-pine/neovim",
-    config = function()
-      vim.cmd.colorscheme("rose-pine-moon")
-    end
-  },
+  "rose-pine/neovim",
   "shaunsingh/nord.nvim",
   "navarasu/onedark.nvim",
   'Mofiqul/vscode.nvim',
