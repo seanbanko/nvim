@@ -1,10 +1,5 @@
 return {
-  {
-    "catppuccin/nvim",
-    config = function()
-      vim.cmd.colorscheme("catppuccin-mocha")
-    end
-  },
+  "catppuccin/nvim",
   {
     "sainnhe/everforest",
     config = function()
@@ -12,11 +7,14 @@ return {
     end
   },
   "projekt0n/github-nvim-theme",
-  "rose-pine/neovim",
+  {
+    "rose-pine/neovim",
+    config = function()
+      vim.cmd.colorscheme("rose-pine")
+    end
+  },
   "shaunsingh/nord.nvim",
   "navarasu/onedark.nvim",
   'Mofiqul/vscode.nvim',
-  {
-    "folke/tokyonight.nvim",
-  },
+  "folke/tokyonight.nvim",
 }

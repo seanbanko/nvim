@@ -13,7 +13,7 @@ end
 
 vim.diagnostic.config({
   severity_sort = true,
-  update_in_insert = false,
+  update_in_insert = true,
   virtual_text = {
     prefix = "●",
     spacing = 1
