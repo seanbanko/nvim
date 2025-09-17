@@ -8,11 +8,12 @@ return {
     picker = {
       enabled = true,
       hidden = true,
+      ignored = true,
     },
     terminal = { enabled = true },
   },
   keys = {
-    { "<leader>t",  function() Snacks.explorer() end,  desc = "File Explorer" },
+    { "<leader>e",  function() Snacks.explorer() end,  desc = "File Explorer" },
     { "<leader>go", function() Snacks.gitbrowse() end, desc = "Git Browse",   mode = { "n", "v" } },
   }
 }
