@@ -23,7 +23,7 @@ return {
       "<leader>fo",
       function()
         require("telescope.builtin").find_files({
-          hidden = true,
+          hidden = false,
           no_ignore = true,
         })
       end,

@@ -71,4 +71,10 @@ return {
   },
   "https://github.com/towolf/vim-helm",
   { "nvim-tree/nvim-web-devicons", opts = {} },
+  {
+    "benomahony/uv.nvim",
+    opts = {
+      picker_integration = true,
+    },
+  }
 }
