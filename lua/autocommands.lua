@@ -21,6 +21,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Wrap prose at 80 columns with a visual guide
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "markdown", "text" },
+  callback = function()
+    vim.opt_local.textwidth = 80
+    vim.opt_local.colorcolumn = "80"
+  end,
+})
+
 -- Use size 2 indents for certain filetypes
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "c", "lua", "dart", "terraform", "typescript", "typescriptreact" },
@@ -41,6 +50,6 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 -- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+    vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
   end,
 })

@@ -1,118 +1,88 @@
--- todo refactor this when neovim v0.11 is released
-
-local signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
-}
-
-for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
-
 vim.diagnostic.config({
   severity_sort = true,
   update_in_insert = true,
   virtual_text = {
     prefix = "●",
-    spacing = 1
+    spacing = 1,
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = "",
+    },
   },
   float = {
     focusable = true,
     style = "minimal",
     border = "rounded",
-    source = "always",
+    source = true,
   },
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.o.winborder = "rounded"
+
+vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
-    local opts = { buffer = event.buf }
-    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    vim.keymap.set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    vim.keymap.set("n", "?", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    vim.keymap.set("n", "<leader>]d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-    vim.keymap.set("n", "<leader>[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
-    vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", opts)
-  end
+    local function map(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
+    end
+    map("n", "K", vim.lsp.buf.hover, "Hover")
+    map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+    map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+    map("n", "gr", vim.lsp.buf.references, "References")
+    map("n", "gi", vim.lsp.buf.implementation, "Implementation")
+    map("n", "gt", vim.lsp.buf.type_definition, "Type definition")
+    map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+    map("n", "?", vim.diagnostic.open_float, "Diagnostic float")
+    map("n", "<leader>]d", function() vim.diagnostic.jump({ count = 1, float = false }) end, "Next diagnostic")
+    map("n", "<leader>[d", function() vim.diagnostic.jump({ count = -1, float = false }) end, "Previous diagnostic")
+    map("n", "<leader>lr", "<cmd>LspRestart<cr>", "LSP Restart")
+  end,
 })
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
-})
-
--- mason-lspconfig requires that these setup functions are called in this order
--- before setting up the servers.
-require('mason').setup()
 
 local servers = {
-  ansiblels = {},
-  bashls = {},
-  buf_ls = {},
-  clangd = {},
-  cssls = {},
-  gopls = {},
-  html = {},
-  jdtls = {},
-  jsonls = {},
-  lua_ls = {},
-  marksman = {},
-  pyright = {},
-  rust_analyzer = {},
-  terraformls = {},
-  texlab = {},
-  ts_ls = {},
-  yamlls = {},
+  "ansiblels",
+  "bashls",
+  "buf_ls",
+  "clangd",
+  "cssls",
+  "gopls",
+  "html",
+  "jdtls",
+  "jsonls",
+  "lua_ls",
+  "marksman",
+  "pyright",
+  "terraformls",
+  "texlab",
+  "ts_ls",
 }
 
-local default_capabilities = require('blink.cmp').get_lsp_capabilities()
-
-require("mason-lspconfig").setup({
-  ensure_installed = vim.tbl_keys(servers),
-  automatic_installation = false,
-  handlers = {
-    function(server_name)
-      require("lspconfig")[server_name].setup {
-        capabilities = default_capabilities
-      }
-    end,
-    ["rust_analyzer"] = function()
-      require("rust-tools").setup({
-        server = {
-          on_attach = function(_, bufnr)
-            vim.keymap.set("n", "K", function()
-              require("rust-tools").hover_actions.hover_actions()
-            end, { buffer = bufnr })
-          end,
-        },
-      })
-    end,
-    ["lua_ls"] = function()
-      require("lspconfig").lua_ls.setup {
-        settings = {
-          Lua = {
-            diagnostics = { globals = { "vim" } }
-          }
-        }
-      }
-    end,
-    ["clangd"] = function()
-      require("lspconfig").clangd.setup {
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
-      }
-    end,
-  }
+vim.lsp.config("*", {
+  capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
+
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim" } },
+    },
+  },
+})
+
+vim.lsp.config("clangd", {
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+})
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = servers,
+  automatic_installation = false,
+})
+
+vim.lsp.enable(servers)
 
 return {}

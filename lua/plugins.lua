@@ -15,34 +15,44 @@ return {
       }
     },
   },
+  "williamboman/mason-lspconfig.nvim",
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "simrat39/rust-tools.nvim",
-    },
+    "mrcjkb/rustaceanvim",
+    version = "^6",
+    lazy = false,
+    ft = { "rust" },
+    init = function()
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = function(_, bufnr)
+            vim.keymap.set("n", "K", function()
+              vim.cmd.RustLsp({ "hover", "actions" })
+            end, { buffer = bufnr, desc = "Rust hover actions" })
+          end,
+        },
+      }
+    end,
   },
   { 'j-hui/fidget.nvim', opts = {} },
-  { "folke/neodev.nvim", opts = {} },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
   "folke/neoconf.nvim",
   "mfussenegger/nvim-ansible",
   "lervag/vimtex",
-  {
-    "numToStr/Comment.nvim",
-    config = true,
-  },
-  -- "RRethy/vim-illuminate",
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
   "lukas-reineke/indent-blankline.nvim",
   "tpope/vim-surround",
   "sindrets/diffview.nvim",
   {
-    "simrat39/symbols-outline.nvim",
+    "hedyhli/outline.nvim",
     config = true,
-    keys = { { "<leader>so", "<cmd>SymbolsOutline<cr>", mode = "n", silent = true } },
+    keys = { { "<leader>so", "<cmd>Outline<cr>", mode = "n", silent = true, desc = "Symbols outline" } },
   },
   {
     'windwp/nvim-autopairs',
